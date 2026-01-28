@@ -3,29 +3,160 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anon Optics - Product Registration</title>
+    <title>Register Your Anon Helmet</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f5f5f5;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .page-title {
+            font-size: 24px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 32px;
+            text-align: center;
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            width: 100%;
+            max-width: 560px;
+        }
+
+        .card-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 24px;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .required {
+            color: #e53935;
+        }
+
+        .form-select {
+            width: 100%;
+            padding: 14px 16px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            background-color: #fff;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 16px center;
+            cursor: pointer;
+        }
+
+        .form-select:focus {
+            outline: none;
+            border-color: #E8A33C;
+        }
+
+        .btn-continue {
+            width: 100%;
+            padding: 16px 24px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #ffffff;
+            background-color: #E8A33C;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: background-color 0.2s;
+        }
+
+        .btn-continue:hover {
+            background-color: #d4922e;
+        }
+
+        .btn-continue:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        .btn-arrow {
+            font-size: 18px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Anon Optics Product Registration</h1>
-    <p>Select your region and language:</p>
+    <h1 class="page-title">Register Your Anon Helmet</h1>
 
-    <h2>North America</h2>
-    <ul>
-        <li><a href="na-en.html">English</a></li>
-        <li><a href="na-fr.html">Français</a></li>
-    </ul>
+    <div class="card">
+        <h2 class="card-title">Select your region to start</h2>
 
-    <h2>Europe</h2>
-    <ul>
-        <li><a href="eur-en.html">English</a></li>
-        <li><a href="eur-fr.html">Français</a></li>
-        <li><a href="eur-de.html">Deutsch</a></li>
-    </ul>
+        <div class="form-group">
+            <label class="form-label">
+                Region / Language <span class="required">*</span>
+            </label>
+            <select id="region-select" class="form-select">
+                <option value="">Select your region and language</option>
+                <optgroup label="North America">
+                    <option value="na-en.html">North America - English</option>
+                    <option value="na-fr.html">North America - Français</option>
+                </optgroup>
+                <optgroup label="Europe">
+                    <option value="eur-en.html">Europe - English</option>
+                    <option value="eur-fr.html">Europe - Français</option>
+                    <option value="eur-de.html">Europe - Deutsch</option>
+                </optgroup>
+                <optgroup label="Asia Pacific">
+                    <option value="apac-en.html">Asia Pacific - English</option>
+                    <option value="apac-ja.html">Asia Pacific - 日本語</option>
+                </optgroup>
+            </select>
+        </div>
 
-    <h2>Asia Pacific</h2>
-    <ul>
-        <li><a href="apac-en.html">English</a></li>
-        <li><a href="apac-ja.html">日本語</a></li>
-    </ul>
+        <button id="continue-btn" class="btn-continue" disabled>
+            Continue <span class="btn-arrow">→</span>
+        </button>
+    </div>
+
+    <script>
+        const select = document.getElementById('region-select');
+        const button = document.getElementById('continue-btn');
+
+        select.addEventListener('change', function() {
+            button.disabled = !this.value;
+        });
+
+        button.addEventListener('click', function() {
+            const selectedPage = select.value;
+            if (selectedPage) {
+                window.location.href = selectedPage;
+            }
+        });
+    </script>
 </body>
 </html>
